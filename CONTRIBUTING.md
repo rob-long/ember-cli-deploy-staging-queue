@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-cli-deploy-staging-queue`
+* `cd ember-cli-deploy-later`
 * `npm install`
 
 ## Linting

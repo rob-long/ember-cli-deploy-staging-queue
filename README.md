@@ -1,4 +1,4 @@
-ember-cli-deploy-staging-queue
+ember-cli-deploy-later
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-cli-deploy-staging-queue
+ember install ember-cli-deploy-later
 ```
 
 
