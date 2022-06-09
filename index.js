@@ -3,14 +3,14 @@ var BasePlugin = require('ember-cli-deploy-plugin');
 const axios = require('axios');
 
 const checkStagingQueue = (context) => {
-  const deployTarget = context.commandOptions.deployTarget;
+  const deployTarget = context.commandOptions?.deployTarget;
   const isStaging = deployTarget === 'staging';
   const isProduction = deployTarget === 'production';
 
   return new Promise(function (resolve, reject) {
-    const url = 'https://later-slack.herokuapp.com/staging';
+    const url = `http://localhost:8080/staging`;
 
-    if (context && context.commandOptions && context.commandOptions.force) {
+    if (context.commandOptions.force) {
       resolve();
     }
 
@@ -18,9 +18,8 @@ const checkStagingQueue = (context) => {
       axios
         .get(url)
         .then((response) => {
-          if (response.data && response.data.queue.length) {
-            const { username } = response.data.queue[0];
-            reject(`Staging has been taken over by ${username}`);
+          if (response.data.queue?.length) {
+            reject(`Staging has been taken over by ${response.data.queue[0]}`);
           } else {
             resolve();
           }
@@ -36,7 +35,7 @@ const checkStagingQueue = (context) => {
 };
 
 module.exports = {
-  name: '@latermedia/ember-cli-deploy-later',
+  name: 'ember-cli-deploy-later',
 
   createDeployPlugin: function (options) {
     var DeployPlugin = BasePlugin.extend({
